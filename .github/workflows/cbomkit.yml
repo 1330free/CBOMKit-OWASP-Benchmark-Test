@@ -1,0 +1,23 @@
+name: CBOMKit OWASP Benchmark Scan
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  cbom-analysis:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run CBOMKit
+        uses: cbomkit/cbomkit-action@main
+
+      - name: Upload CBOM result
+        uses: actions/upload-artifact@v4
+        with:
+          name: cbom-result
+          path: cbom/
